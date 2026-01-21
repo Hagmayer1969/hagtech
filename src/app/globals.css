@@ -68,3 +68,16 @@ body {
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
 }
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-line-bg {
+  /* Criamos um degradê bem longo para dar a sensação de movimento */
+  background: linear-gradient(90deg, #ec4899, #8b5cf6, #ec4899, #8b5cf6);
+  background-size: 200% 100%; /* Isso faz o degradê ser o dobro do tamanho */
+  animation: gradient-move 4s linear infinite; /* Animação suave */
+}

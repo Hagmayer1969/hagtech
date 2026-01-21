@@ -16,24 +16,24 @@ export default function BotaoRede({ titulo, link, icone }: BotaoRedeProps): JSX.
         href={link} 
         target="_blank" // Abre em nova aba
         rel="noopener noreferrer" // Segurança ao abrir links externos
-        className="relative inline-flex items-center justify-center p-[1px] overflow-hidden rounded-lg group"
+        className="relative inline-flex items-center justify-center p-[1px] overflow-hidden rounded-2xl group"
       >
         {/* Camada do degradê que gira ao fundo */}
         <span className="absolute w-[300%] h-[300%] bg-conic-gradient animate-spin-slow blur-md"></span>         
         
         {/* Corpo do botão */}
-        <button className="relative bg-black text-white px-10 py-0.5 rounded-[inherit] w-full h-full transition-all duration-300 flex items-center justify-center gap-2 group-hover:bg-opacity-90">
+        <button className="relative bg-black text-white p-1 md:px-4 md:py-1 rounded-2xl md:rounded-2xl flex items-center justify-center gap-2 transition-all duration-300">
           
           {/* Renderização condicional do ícone */}
           {icone && (
             <img 
               src={icone} 
               alt={`Ícone ${titulo}`} 
-              className="w-10 h-auto object-contain" 
+              className="w-10 h-10 object-contain" 
             />
           )}
 
-          <span className="font-medium">{titulo}</span>
+          <span className="hidden md:block font-medium">{titulo}</span>
         </button>
       </a>
     </div>
