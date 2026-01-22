@@ -3,39 +3,47 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-export default function Navigation() {
+interface NavigationProps {
+  mobile?: boolean
+  onClick?: () => void
+}
+
+export default function Navigation({ mobile, onClick }: NavigationProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const links = [
-    { name: "Home", href: "/" },
-    { name: "Sobre", href: "#sobre" },
-    { name: "Serviços", href: "#servicos" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Contato", href: "#contato" },
+    { name: 'Home', href: '/' },
+    { name: 'Sobre', href: '#sobre' },
+    { name: 'Serviços', href: '#servicos' },
+    { name: 'Projetos', href: '#projetos' },
+    { name: 'Contato', href: '#contato' },
   ]
 
+  const baseClass = mobile
+    ? 'flex flex-col items-start gap-6'
+    : 'flex items-center gap-[2.5vw] lg:gap-[3vw]'
+
   return (
-    <ul className="flex items-center gap-[2.5vw] lg:gap-[3vw]">
+    <ul className={baseClass}>
       {links.map((link, index) => (
-        <li 
-          key={link.name} 
+        <li
+          key={link.name}
           className="relative py-1"
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          <a 
+          <a
             href={link.href}
+            onClick={() => onClick?.()}
             className={`
-              relative z-10 transition-all duration-200 whitespace-nowrap
-              /* Tamanho reduzido para equilíbrio */
-              text-[1rem] md:text-[2vw] lg:text-[1vw]
-              ${hoveredIndex === index ? 'text-white font-bold' : 'text-gray-300 font-medium'}
+               relative z-10 transition-all duration-200 whitespace-nowrap
+               text-sm md:text-base lg:text-[1.1rem]
+               ${hoveredIndex === index ? 'text-white font-bold' : 'text-gray-300 font-medium'}
             `}
           >
             {link.name}
           </a>
 
-          {/* Linha colorida mais fina */}
           {hoveredIndex === index && (
             <motion.div
               layoutId="nav-underline"
@@ -43,7 +51,7 @@ export default function Navigation() {
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
               exit={{ opacity: 0, scaleX: 0 }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             />
           )}
         </li>

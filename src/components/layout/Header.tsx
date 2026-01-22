@@ -1,11 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence} from 'framer-motion'
 import Navigation from './Navigation'
-import BotaoRedes from '../ui/Button';
+import Botao from '../ui/Button';
+import MobileMenu from './MobileMenu'
 
 export default function Header() {
+   
+  const [isOpen, setisOpen] = useState(false)
+
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -14,20 +18,20 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // 1. Definição das variantes de animação
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15, // Tempo entre a entrada de cada bloco
-        delayChildren: 0.2,    // Pequena espera inicial ao carregar a página
+        staggerChildren: 0.15, 
+        delayChildren: 0.2,   
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: -20 }, // Começa 20px acima e invisível
+    hidden: { opacity: 0, y: -20 }, 
     visible: { 
       opacity: 1, 
       y: 0, 
@@ -45,49 +49,50 @@ export default function Header() {
         scrolled ? 'bg-black/60 backdrop-blur-xl py-[0.8vw]' : 'bg-transparent py-[1.5vw]'
       }`}
     >
-      {/* 2. O motion.nav gerencia o container das animações */}
-      <motion.nav 
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="max-w-[95%] md:max-w-[90%] mx-auto flex items-center justify-between"
-      >
-        
-        {/* ESQUERDA: Logo */}
-        <motion.div 
-          variants={itemVariants}
-          className="flex-shrink-0 flex justify-start min-w-[120px] md:min-w-[150px] lg:min-w-[200px]"
-        >
-          <a href="/">
-            <img 
-              src="./iconss/hagtech.png" 
-              alt="Logo"
-              className="w-[18vw] min-w-[70px] max-w-[100px] md:w-[8vw]"
-            />
-          </a>
-        </motion.div>
+     <motion.nav 
+  variants={containerVariants} 
+  initial="hidden" 
+  animate="visible"
+  className="max-w-[95%] md:max-w-[90%] mx-auto flex items-center justify-between px-2"
+>
+  
+  <motion.div 
+    variants={itemVariants} 
+    className="flex-shrink-0 flex justify-start min-w-[100px] md:min-w-[200px]"
+  >
+    <a href="/">
+      <img 
+        src="./iconss/hagtech.png" 
+        alt="Logo"
+        className="w-[25vw] min-w-[90px] max-w-[120px] md:w-[8vw] md:max-w-[100px] transition-all"
+      />
+    </a>
+  </motion.div>
 
-        {/* CENTRO: Navegação */}
-        <motion.div 
-          variants={itemVariants}
-          className="hidden md:flex flex-grow justify-center"
-        >
-          <Navigation />
-        </motion.div>
 
-        {/* DIREITA: Botão Único */}
-        <motion.div 
-          variants={itemVariants}
-          className="flex-shrink-0 flex justify-end min-w-[120px] md:min-w-[150px] lg:min-w-[200px]"
-        >
-          <BotaoRedes 
-            text="Começar Projeto" 
-            link="/contato" 
-            className="text-[0.95rem] md:text-[1.1vw] font-bold px-[4vw] py-[1.5vw] md:px-[1.5vw] md:py-[0.6vw]"
-          />
-        </motion.div>
+  <motion.div variants={itemVariants} className="hidden md:flex flex-grow justify-center">
+    <Navigation />
+  </motion.div>
 
-      </motion.nav>
+  <motion.div 
+    variants={itemVariants} 
+  
+    className="flex items-center justify-end gap-2 min-w-[100px] md:min-w-[200px]"
+  >
+    <div className="hidden sm:block">
+      <Botao text="Começar Projeto" link="/contato" />
+    </div>
+
+    <button onClick={() => setisOpen(!isOpen)} className="md:hidden flex flex-col gap-1.5 p-2 z-[100]">
+      <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
+      <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
+      <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+    </button>
+  </motion.div>
+</motion.nav>
+      <AnimatePresence>
+        {isOpen && <MobileMenu isOpen={isOpen} setIsOpen={setisOpen} />}
+      </AnimatePresence>
     </header>
   )
 }
