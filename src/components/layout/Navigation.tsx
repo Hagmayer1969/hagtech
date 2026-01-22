@@ -1,21 +1,34 @@
 // Navigation Component
 // Componente de navegação reutilizável
 
-import React from "react";
+// components/Navigation.tsx
+import React from 'react';
 
 interface NavigationProps {
-  // Props do componente
+  direction?: 'row' | 'col';
 }
 
-export default function Navigation({}: NavigationProps) {
+export default function Navigation({ direction = 'row' }: NavigationProps) {
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "Sobre", href: "#sobre" },
+    { name: "Serviços", href: "#servicos" },
+    { name: "Projetos", href: "#projetos" },
+    { name: "Contato", href: "#contato" },
+  ];
+
   return (
-    <>
-      <button className="flex flex-col gap-1.5 p-2 group">
-        <div className="w-7 h-0.5 rounded-full gradient-line-bg"></div>
-        <div className="w-7 h-0.5 rounded-full gradient-line-bg"></div>
-        <div className="w-7 h-0.5 rounded-full gradient-line-bg"></div>
-        
-      </button>
-    </>
+    <ul className={`flex ${direction === 'col' ? 'flex-col gap-8' : 'flex-row gap-6'} items-center`}>
+      {links.map((link) => (
+        <li key={link.name}>
+          <a 
+            href={link.href}
+            className="text-white/80 hover:text-white transition-colors text-lg md:text-sm font-medium whitespace-nowrap"
+          >
+            {link.name}
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }
