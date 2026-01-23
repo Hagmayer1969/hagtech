@@ -45,9 +45,7 @@ export default function Header() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? 'bg-black/60 backdrop-blur-xl py-[0.8vw]' : 'bg-transparent py-[1.5vw]'
-      }`}
+     className="fixed top-0 left-0 w-full z-50 py-[0.8vw] bg-black/40 backdrop-blur-xl transition-all duration-500"
     >
      <motion.nav 
   variants={containerVariants} 
