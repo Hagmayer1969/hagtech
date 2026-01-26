@@ -17,21 +17,31 @@ const socialLinks = [
 const footerLinks = [
   {
     title: "Empresa",
-    links: ["Sobre Nós", "Equipe", "Carreiras", "Blog"],
+    links: [
+      { label: "Sobre Nós", href: "#" },
+      { label: "Equipe", href: "#" },
+      { label: "Carreiras", href: "/carreiras" },
+      { label: "Blog", href: "#" },
+    ],
   },
   {
     title: "Serviços",
     links: [
-      "Sites Institucionais",
-      "E-commerce",
-      "Landing Pages",
-      "Manutenção",
-      "Automação",
+      { label: "Sites Institucionais", href: "#" },
+      { label: "E-commerce", href: "#" },
+      { label: "Landing Pages", href: "#" },
+      { label: "Manutenção", href: "#" },
+      { label: "Automação", href: "#" },
     ],
   },
   {
     title: "Suporte",
-    links: ["FAQ", "Contato", "Política de Privacidade", "Termos de Uso"],
+    links: [
+      { label: "FAQ", href: "#" },
+      { label: "Contato", href: "/contato" },
+      { label: "Política de Privacidade", href: "#" },
+      { label: "Termos de Uso", href: "#" },
+    ],
   },
 ];
 
@@ -72,10 +82,10 @@ export const Footer = () => {
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-neutral-400 hover:text-pink-500 transition-colors text-sm"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -89,8 +99,8 @@ export const Footer = () => {
             © 2026 HagTech. Todos os direitos reservados.
           </p>
           <p className="text-neutral-500 text-sm">
-            Sites que  <span className="text-pink-500"></span> transforman
-            negocios em marcas.
+            Construímos a versão <span className="text-pink-500"></span> digital
+            que seu negócio merece.
           </p>
         </div>
       </div>
