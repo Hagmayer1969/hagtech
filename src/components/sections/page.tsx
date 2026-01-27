@@ -2,7 +2,14 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Github, Instagram, Code, Palette, TrendingUp } from "lucide-react";
+import {
+  Linkedin,
+  Github,
+  Instagram,
+  Code,
+  Palette,
+  TrendingUp,
+} from "lucide-react";
 import Header from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -17,8 +24,8 @@ const founders = [
       "Especialista em TI com vasta experiência em desenvolvimento de software. Domina Python, JavaScript, React, Next.js e é especialista em automação com N8n. Responsável pela arquitetura técnica e inovação da HagTech.",
     skills: ["Python", "JavaScript", "React", "Next.js", "N8n", "Automação"],
     social: {
-      linkedin: "#",
-      github: "#",
+      linkedin: "https://www.linkedin.com/in/ben-calebe/",
+      github: "https://github.com/hagmayer06",
       instagram: "#",
     },
   },
@@ -30,10 +37,16 @@ const founders = [
     icon: Palette,
     description:
       "Especialista em design, criação de conteúdos e gestão de redes sociais. Responsável pela identidade visual e estratégia criativa da HagTech, transformando ideias em experiências visuais impactantes.",
-    skills: ["UI/UX Design", "Branding", "Social Media", "Criação de Conteúdo", "Motion Design"],
+    skills: [
+      "UI/UX Design",
+      "Branding",
+      "Social Media",
+      "Criação de Conteúdo",
+      "Motion Design",
+    ],
     social: {
-      linkedin: "#",
-      github: "#",
+      linkedin: "https://www.linkedin.com/in/gabriel-hagmayer-a2aaa5387/",
+      github: "https://github.com/gabrielhagmayer",
       instagram: "#",
     },
   },
@@ -45,10 +58,16 @@ const founders = [
     icon: TrendingUp,
     description:
       "Especialista na área comercial, estratégias de mercado e copywriting. Lidera as operações de negócios e parcerias estratégicas, garantindo o crescimento sustentável da HagTech.",
-    skills: ["Estratégia Comercial", "Copywriting", "Marketing", "Vendas", "Negociação"],
+    skills: [
+      "Estratégia Comercial",
+      "Copywriting",
+      "Marketing",
+      "Vendas",
+      "Negociação",
+    ],
     social: {
-      linkedin: "#",
-      github: "#",
+      linkedin: "https://www.linkedin.com/in/edson-hagmayer-a5234555/",
+      github: "https://github.com/Hagmayer1969",
       instagram: "#",
     },
   },
@@ -133,7 +152,11 @@ export default function CarreirasPage() {
 
               {/* Photo */}
               <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-neutral-800 group-hover:border-purple-500/50 transition-colors duration-500">
-                <img src={founder.photo} alt={founder.name} className={`w-full h-full object-cover ${founder.photoPosition}`} />
+                <img
+                  src={founder.photo}
+                  alt={founder.name}
+                  className={`w-full h-full object-cover ${founder.photoPosition}`}
+                />
               </div>
 
               {/* Info */}
@@ -166,6 +189,8 @@ export default function CarreirasPage() {
                     <a
                       href={founder.social.linkedin}
                       className="w-10 h-10 rounded-lg bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-pink-500 hover:bg-neutral-700 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Linkedin className="w-5 h-5" />
                     </a>
@@ -174,6 +199,8 @@ export default function CarreirasPage() {
                     <a
                       href={founder.social.github}
                       className="w-10 h-10 rounded-lg bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-pink-500 hover:bg-neutral-700 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Github className="w-5 h-5" />
                     </a>
@@ -182,6 +209,8 @@ export default function CarreirasPage() {
                     <a
                       href={founder.social.instagram}
                       className="w-10 h-10 rounded-lg bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-pink-500 hover:bg-neutral-700 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Instagram className="w-5 h-5" />
                     </a>
